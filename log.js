@@ -74,8 +74,8 @@ module.exports = function (options) {
   });
 
   after(function (done) {
-    if (options.afterEach) {
-      return options.afterEach(options, done);
+    if (options.after) {
+      return options.after(options, done);
     }
 
     done();
