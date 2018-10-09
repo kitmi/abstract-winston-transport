@@ -18,6 +18,7 @@ module.exports = function (options) {
   });
 
   // TODO How to assert that error event is thrown? How to make a transport fail?
+  
   describe('.log()', function () {
     it('should be present', function () {
       assert.ok(instance.log);
@@ -66,9 +67,14 @@ module.exports = function (options) {
   });
 
   afterEach(function (done) {
+    if (instance) {      
+      instance.close();
+      instance = null;
+    }
+    
     if (options.afterEach) {
       return options.afterEach(options, done);
-    }
+    }    
 
     done();
   });
@@ -76,7 +82,7 @@ module.exports = function (options) {
   after(function (done) {
     if (options.after) {
       return options.after(options, done);
-    }
+    }    
 
     done();
   });
